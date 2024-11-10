@@ -18,82 +18,62 @@ még mindig a ciklusban maradva létrehozunk egy mappát a pwd változóban megh
 
 ## Gyakorlat
 
-### Írj scriptet, ami beolvas egy számot a bemenetről, majd kiírja a számjegyek összegét!
-
+### Írj scriptet, ami beolvas egy számot a bemenetről, majd kiírja a számjegyek összegét!  
+**a.sh**  
 ```sh
 #!/bin/bash
 #
-# Bemenet ellenőrzése
-if [ -z "$1" ]; then
-  echo "Kérlek, adj meg egy számot argumentumként!"
-  exit 1
-fi
+read szam
+a=0
 
-# Számjegyek összegének kiszámítása
-osszeg=0
-for (( i=0; i<${#1}; i++ )); do
-  digit=${1:$i:1}
-  osszeg=$((osszeg + digit))
+for (( i=0; i<${#szam}; i++ ));  #a szam hosszáig
+do
+	b=${szam:$i:1} #egy karakter az $i-edik karaktertÅ‘l
+	let a+=b
 done
-
-# Eredmény kiírása
-echo "$osszeg"
+echo $a
 ```
 
-### Írj scriptet, ami kiírja a mellette találhato szamok.txt legnagyobb számát. A szamok.txt tetszőleges számú számot tartalmaz, amik szóközzel vagy enterrel vannak elválasztva. A file végén nincs feltétlenül üres sor.
-
+### Írj scriptet, ami kiírja a mellette találhato szamok.txt legnagyobb számát. A szamok.txt tetszőleges számú számot tartalmaz, amik szóközzel vagy enterrel vannak elválasztva. A file végén nincs feltétlenül üres sor.  
+**b.sh**
 ```sh
 #!/bin/bash
+#
+max=0
+while IFS='' read -r sor || [[ -n $sor ]] 
+do
+	for szo in $sor 
+	do
+		if(( $szo > $max ))
+		then
+			let	max=szo
+		fi
+		
+	done
+done < $1
 
-# Ellenőrizzük, hogy a szamok.txt létezik-e
-if [ ! -f "szamok.txt" ]; then
-  echo "Hiba: A szamok.txt fájl nem található!"
-  exit 1
-fi
-
-# Legnagyobb szám meghatározása
-max=$(tr -s ' \n' '\n' < szamok.txt | sort -n | tail -1)
-
-# Eredmény kiírása
-echo "A legnagyobb szám: $max"
+echo $max
 ```
 
 ### Készíts shell szkriptet, amelyik egy fájlban lévő vásárlások közül kilistázza a 10 000 HUF feletti termékek nevét. A fájl nevét paraméterként adjuk meg. 
 A vásárlások formájaa: <ár> <üzlet> <termék neve> <dátum>  
 Pl.  
 1024 AQUA USB-kábel 2017.03.21  
-12480 ACME Dinamit 2018.12.25  
+12480 ACME Dinamit 2018.12.25   
+
+**c.sh**
 
 ```sh
 #!/bin/bash
-
-# Ellenőrizzük, hogy megadták-e a fájlnevet argumentumként
-if [ -z "$1" ]; then
-  echo "Használat: $0 <fájlneve>"
-  exit 1
-fi
-
-# Ellenőrizzük, hogy a megadott fájl létezik-e
-if [ ! -f "$1" ]; then
-  echo "Hiba: A megadott fájl nem található!"
-  exit 1
-fi
-
-# Feldolgozzuk a fájlt és kilistázzuk a 10 000 HUF feletti termékek nevét
-awk '$1 > 10000 { print $3 }' "$1"
+#
+while IFS=' ' read -r ar uzlet termek_neve datum || [[ -n $ar ]]
+do
+	if [ $ar -gt 10000 ]; 
+	then
+		echo $termek_neve
+	fi
+done < $1
 ```
-**Magyarázat**:  
-1.	**Paraméter ellenőrzése**: A script ellenőrzi, hogy a fájl nevét megadták-e argumentumként. Ha nem, akkor figyelmeztetést ad, és kilép.
-2.	**Fájl létezésének ellenőrzése**: Ha a fájl nem létezik, a script figyelmeztetést ad, és kilép.
-3.	**Feldolgozás az** `awk` **parancssal**:
-	•	Az awk segítségével vizsgáljuk meg, hogy az első oszlop (ár) nagyobb-e, mint 10 000.
-	•	Ha a feltétel teljesül, akkor a harmadik oszlopot (termék nevét) írjuk ki.
-
-**Használat**:  
-1. Tedd futtathatóvá a scriptet:  
-```chmod +x c.sh```  
-2. Futtatás példa:  
-```./c.sh vasarlasok.txt```
 
 ### Készíts shell szkriptet, ami bekér egy n számot, és Kirajzol # karakterekből álló derékszögű háromszöget, aminek a leghosszabb oldala n darab ‘#’-ből áll. Addig várja az n értéket, amíg egy 0 és 10 közötti számot kap.
 ```
@@ -113,73 +93,48 @@ $ ./d.sh
 ####
 #####
 ```  
+**d.sh**  
 ```sh
 #!/bin/bash
-
-# Addig kérjük be az n értékét, amíg az 0 és 10 közötti nem lesz
-while true; do
-  read -p "Adj meg egy 0 és 10 közötti számot: " n
-
-  # Ellenőrizzük, hogy a bemenet szám-e, és 0 és 10 között van-e
-  if [[ "$n" =~ ^[0-9]+$ ]] && (( n >= 0 && n <= 10 )); then
-    break
-  else
-    echo "Hiba: Adj meg egy 0 és 10 közötti számot!"
-  fi
+#
+read MERET
+while [ $MERET -gt 10 ] || [ $MERET -lt 0 ] 
+do 
+	read MERET 
 done
 
-# Ha a megadott szám 0, akkor kilépünk a scriptből
-if (( n == 0 )); then
-  exit 0
-fi
-
-# Kirajzoljuk a háromszöget
-for (( i = 1; i <= n; i++ )); do
-  printf "%0.s#" $(seq 1 $i)
-  echo
+for ((i=1;i<=MERET;i++)); 
+do
+	for ((j=1;j<=i;j++)); 
+    do
+		echo -ne "#"
+	done
+	echo ""
 done
 ```
-**Magyarázat:**  
-1.  **Érték bekérése**: A while true ciklusban addig kérjük be az n értékét, amíg egy 0 és 10 közötti egész számot nem kapunk.
-2.	**Bemenet ellenőrzése**: Az [[ "$n" =~ ^[0-9]+$ ]] kifejezés ellenőrzi, hogy a megadott érték szám-e. A (( n >= 0 && n <= 10 )) feltétel biztosítja, hogy az érték 0 és 10 közötti legyen.
-3.	**Nulla ellenőrzése**: Ha n értéke 0, akkor a script kilép.
-4.	**Háromszög rajzolása**: A for ciklusban az i változó 1-től n-ig megy, minden iterációban i darab # karaktert írunk ki egy új sorba.
-
-**Használat:**  
-1. Tedd futtathatóvá a scriptet:  
-```chmod +x d.sh```
-
-2. Futtatás:
-```./d.sh```
 
 ### Írj egy dobokocka.sh nevű scriptet, ami futtatásakor kiírja a 2-es számot, és tartalmazza a következő szöveget megjegyzésként: "Generated by RANDOM.ORG". Készíts shell szkriptet ami háromszor meghívja a dobokocka scriptet, és kiírja a kapott eredmények összegét, mást nem.
 ```
 $ ./e.sh 
 6
-```
+```  
 **dobkocka.sh**  
 
 ```sh
 #!/bin/bash
-# Generated by RANDOM.ORG
 echo 2
+#Generated by RANDOM.ORG
 ```
 
 **e.sh**  
 ```sh
 #!/bin/bash
+#
+a="$(bash dobokocka.sh)"
+b="$(bash dobokocka.sh)"
+c="$(bash dobokocka.sh)"
 
-# Kezdeti összeg beállítása
-osszeg=0
-
-# Háromszori dobokocka.sh meghívás és az eredmény hozzáadása az összeghez
-for i in {1..3}; do
-  eredmeny=$(./dobokocka.sh)
-  osszeg=$((osszeg + eredmeny))
-done
-
-# Eredmény kiírása
-echo "$osszeg"
+expr $a + $b + $c
 ```
 
 ### Készíts shell szkriptet, ami az első paraméteréül adott file tartalmából kilistázza minden n. sort, ahol n a második paraméter
@@ -187,35 +142,14 @@ echo "$osszeg"
 **sorok.sh**  
 ```sh
 #!/bin/bash
-
-# Ellenőrizzük, hogy megadták-e mindkét paramétert
-if [ $# -ne 2 ]; then
-  echo "Használat: $0 <fájl> <n>"
-  exit 1
-fi
-
-# Ellenőrizzük, hogy a fájl létezik-e
-if [ ! -f "$1" ]; then
-  echo "Hiba: A megadott fájl nem található!"
-  exit 1
-fi
-
-# Ellenőrizzük, hogy n egy pozitív egész szám-e
-if ! [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
-  echo "Hiba: Az n paraméternek pozitív egész számnak kell lennie!"
-  exit 1
-fi
-
-# A fájl tartalmának feldolgozása és minden n. sor kiírása
-awk "NR % $2 == 0" "$1"
+#
+i=0
+while IFS='' read -r sor || [[ -n $sor ]]
+do
+	let i++
+	if (($i % $2 == 0)) 
+	then
+		echo $sor
+	fi
+done <$1
 ```
-
-**Magyarázat:**  
-1.	**Paraméterek ellenőrzése**: A script ellenőrzi, hogy pontosan két paramétert kaptunk-e (fájl és n értéke).
-2.	**Fájl ellenőrzése**: Ellenőrzi, hogy a megadott fájl létezik-e.
-3.	**n ellenőrzése**: A script ellenőrzi, hogy n egy pozitív egész szám-e.
-4.	**Sorok kiírása**: Az awk használatával kiírjuk minden n-edik sort, ahol NR a sor száma a fájlban. Az NR % n == 0 feltétel biztosítja, hogy csak az n-nel osztható sorokat írja ki.
-
-**Futtatás:**  
-```./sorok.sh fajl_neve.txt 3```  
-Ez a példa a fajl_neve.txt fájl minden 3. sorát írja ki.
