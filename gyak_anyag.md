@@ -73,7 +73,7 @@ Az egyes mezők jelentése:
 - PID -  a folyamat azonosítója   
 - TTY - a vezérlõ terminál azonosítója, jelen esetben ez a ttyp0   
 - STAT - a folyamat állapota  
-- TIME - a processz által eddig elhasznált processzor idő  
+- TIME - a processz által eddig elhasznált processzor idő    
 A rendszerben futó összes folyamatot, a legbővebb információkkal Linux alatt a "ps -aux" opciókkal kérhetjük le. Ekkor a processzekről megtudjuk még tulajdonosukat, az időpontot amikor elindultak, valamint különféle erőforrás használati információkat (CPU, memória használat, a program mérete a memóriában).   
  
 top: Információk a processzekről és egyéb statisztikák a rendszerről. A top folyamatosan fut, és 5 másodpercenként frissíti a megjelenített információkat. Kilépni a "q" megnyomásával lehet.  
@@ -199,10 +199,10 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
         Segítség: az ideiglenesen törölt felhasználók a 666-os felhasználó-azonosítót kapják. (grep ':666:' < felhasznalok.txt | cut -f1 -d: > torolt_felhasznalok.txt)  
 
 ### 4. Input-Output átirányítás  
-- > output átirányítás  
+- '>' output átirányítás  
     - Feladat: Mit jelent: echo alma >&2 ? (Kimenet, a hibakimenetre megy.)  
     - Feladat: Irányítsuk a kimenetet a ’feneketlen kukába’! (echo kukába >/dev/null )  
-- >> hozzáfűzés  
+- '>>' hozzáfűzés  
 - < input átirányítás  
 - << here input  
     - Feladat: Mit jelent?  
@@ -211,7 +211,7 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
         <body>  Programjaim: </body>  
         </html>  
         alma  
-        (cat paramétere lesz a cat <<alma, alma közti sorok)  
+        (cat paramétere lesz a `cat <<alma`, alma közti sorok)  
 - 2> hiba kimenet átirányítás („2>&1” a hiba kimenet és az egyszerű kimenet összefűzése, kukába a hibával: 2>/dev/null)  
 
 ## 6Sh  
@@ -252,7 +252,7 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
     - Feladat: Írjunk programot, ami kiírja a bejelentkezett felhasználókat! (Figyeljünk a többszörös bejelentkezésre!)   
     (for i in `who|cut –f1 –d” ”|sort -u`   
     do  
-      echo $i bejelentkezett!  
+        echo $i bejelentkezett!  
     done)  
 - while ciklus  
     - Feladat: Oldjuk meg a for első feladatát while ciklus segítségével!  
