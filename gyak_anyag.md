@@ -16,52 +16,52 @@
 
 ## 3Unix
 ### **A Linux könyvtárszerkezete, fontosabb könyvtárak:**  
-- / A főkönyvtár, a könyvtárfa kiindulópontja  
-- /home Ehhez csatlakoznak a felhasználók könyvtárai  
-- /dev A hardvereszközöket reprezentáló fájlok  
-- /etc A legfontosabb konfigurációs fájlok  
-- /usr/bin Közhasználatú parancsok  
-- /sbin A superuser és a rendszerindító parancsok  
-- /usr/doc Dokumentációs fájlok  
-- /usr/local/man Kézikönyv oldalak  
-- /tmp Ideiglenes fájlok  
-- /var Konfigurációs fájlok (Linkek az /usr-ből)  
-- /lib Megosztott programkönyvtárak  
-- /proc A processzek fájlrendszere  
+- `/` A főkönyvtár, a könyvtárfa kiindulópontja  
+- `/home` Ehhez csatlakoznak a felhasználók könyvtárai  
+- `/dev` A hardvereszközöket reprezentáló fájlok  
+- `/etc` A legfontosabb konfigurációs fájlok  
+- `/usr/bin` Közhasználatú parancsok  
+- `/sbin` A superuser és a rendszerindító parancsok  
+- `/usr/doc` Dokumentációs fájlok  
+- `/usr/local/man` Kézikönyv oldalak  
+- `/tmp` Ideiglenes fájlok  
+- `/var` Konfigurációs fájlok (Linkek az /usr-ből)  
+- `/lib` Megosztott programkönyvtárak  
+- `/proc` A processzek fájlrendszere  
 
 ### **Alap unix parancsok:**  
-a. passwd helyett kpasswd, who, whoami  
-b. shell fogalma, aktuális shell: bash, felfele nyíl, tabulátor  
-c. pwd, ls és legfontosabb paraméterei ls –l, ls -al, parancsok értelmezése, unix filerendszer alapok, /, /etc, /var stb. könyvtárak, cd, mkdir, rmdir.  
-    i. Másolás, cp, mozgatás, mv, tartalom megnézés, cat  
-d. I/O átirányítás, ennek segítségével file létrehozása. File törlés, rm, nincs ezután „undelete”   
-e. touch parancs   
-f. Feladat: hozzon létre a könyvtárszerkezetet: foci/nb1, foci/nb2, majd ezalatt, utána töröljük, rm –r   
-g. Link ln parancs.   
-h. Irassuk ki egy nagy könyvtár tartalmát a képernyőre. Majd egy fájlba és azt a more vagy less paranccsal megjeleníteni.( ls /bin > /lsbin majd   
-i. more /lsbin). Ezután tegyük ugyanezt pipeline használatával (ls /bin | more)   
-j. Csomagoljuk össze könyvtárunk tartalmát zip illetve tar fájlokban.    
-k. Felhasználó keresése: finger. „Beszélgetés” másik felhasználóval: talk.  
+- passwd helyett kpasswd, who, whoami  
+- shell fogalma, aktuális shell: bash, felfele nyíl, tabulátor  
+- pwd, ls és legfontosabb paraméterei ls –l, ls -al, parancsok értelmezése, unix filerendszer alapok, /, /etc, /var stb. könyvtárak, cd, mkdir, rmdir.  
+    - i. Másolás, cp, mozgatás, mv, tartalom megnézés, cat  
+- I/O átirányítás, ennek segítségével file létrehozása. File törlés, rm, nincs ezután „undelete”   
+- touch parancs   
+- Feladat: hozzon létre a könyvtárszerkezetet: foci/nb1, foci/nb2, majd ezalatt, utána töröljük, rm –r   
+- Link ln parancs.   
+- Irassuk ki egy nagy könyvtár tartalmát a képernyőre. Majd egy fájlba és azt a more vagy less paranccsal megjeleníteni.( ls /bin > /lsbin majd   
+- more /lsbin). Ezután tegyük ugyanezt pipeline használatával (ls /bin | more)   
+- Csomagoljuk össze könyvtárunk tartalmát zip illetve tar fájlokban.    
+- Felhasználó keresése: finger. „Beszélgetés” másik felhasználóval: talk.  
 
 ### **Jogosítványok:**  
-a. Az alábbi parancsok „normál” unix fájlrendszer alatt működnek. Jelen inf-es kiszolgálón a home könyvtár AFS rendszerű. Ezen is van látszólag chmod, de AFS rendszeren az fs parancson keresztül lehet a jogosítványokat állítani. fs setacl illetve fs listacl a legfontosabb 2 parancs. Ezekről és más AFS jogosítványokról bővebben előadáson lesz szó, illetve manual, és egyéb internetes dokumentációkban találhatunk leírást, mintákat. Gyakorlaton csak az fs listacl fájlnév forma használata szerepeljen!   
-b. ls –l, rwx-ek, módosításuk, UNIX fájlrendszer alatt!    
-c. chmod:  
-- chmod u+x file név: Végrehajtási jogosultságot ad a file tulajdonosának   
-- chmod go-rx file nevek: Visszavonja az olvasási és végrehajtási   
-- jogosultságokat a csoport- és az egyéb felhasználóktól 
-- chmod 644 file név: Olvasási és írási jogosultságot ad a tulajdonos, csak   
-- olvasási jogosultságot ad  minden egyéb felhasználó számára   
-d. Állomány alapjogok, umask   
-e. Tulajdonjog megváltoztatása: chown  
+- Az alábbi parancsok „normál” unix fájlrendszer alatt működnek. Jelen inf-es kiszolgálón a home könyvtár AFS rendszerű. Ezen is van látszólag chmod, de AFS rendszeren az fs parancson keresztül lehet a jogosítványokat állítani. fs setacl illetve fs listacl a legfontosabb 2 parancs. Ezekről és más AFS jogosítványokról bővebben előadáson lesz szó, illetve manual, és egyéb internetes dokumentációkban találhatunk leírást, mintákat. Gyakorlaton csak az fs listacl fájlnév forma használata szerepeljen!   
+- ls –l, rwx-ek, módosításuk, UNIX fájlrendszer alatt!    
+- chmod:  
+    - chmod u+x file név: Végrehajtási jogosultságot ad a file tulajdonosának   
+    - chmod go-rx file nevek: Visszavonja az olvasási és végrehajtási   
+    - jogosultságokat a csoport- és az egyéb felhasználóktól 
+    - chmod 644 file név: Olvasási és írási jogosultságot ad a tulajdonos, csak   
+    - olvasási jogosultságot ad  minden egyéb felhasználó számára   
+- Állomány alapjogok, umask   
+- Tulajdonjog megváltoztatása: chown  
 
 ### **Írassuk ki az aktuális könyvtárban lévő összes html kiterjesztésű file utolsó 2 sorát.**  
-a. find . -name "*.html" -exec tail -2 {} \;  
+- find . -name "*.html" -exec tail -2 {} \;  
 
 ### **Töröljük le a munkakönyvtárból az összes fájlt és a könyvtárat is.**  
-a. rm *   
-b. cd ..   
-c. rmdir temp/  
+- rm *   
+- cd ..   
+- rmdir temp/  
 
 ## 4Unix
 
@@ -70,10 +70,10 @@ c. rmdir temp/
 ### Futó folyamatok lekérése  
 A futó folyamatokat a ps paranccsal kérhetjük le.  
 Az egyes mezők jelentése:  
-PID -  a folyamat azonosítója   
-TTY - a vezérlõ terminál azonosítója, jelen esetben ez a ttyp0   
-STAT - a folyamat állapota  
-TIME - a processz által eddig elhasznált processzor idő  
+- PID -  a folyamat azonosítója   
+- TTY - a vezérlõ terminál azonosítója, jelen esetben ez a ttyp0   
+- STAT - a folyamat állapota  
+- TIME - a processz által eddig elhasznált processzor idő  
 A rendszerben futó összes folyamatot, a legbővebb információkkal Linux alatt a "ps -aux" opciókkal kérhetjük le. Ekkor a processzekről megtudjuk még tulajdonosukat, az időpontot amikor elindultak, valamint különféle erőforrás használati információkat (CPU, memória használat, a program mérete a memóriában).   
  
 top: Információk a processzekről és egyéb statisztikák a rendszerről. A top folyamatosan fut, és 5 másodpercenként frissíti a megjelenített információkat. Kilépni a "q" megnyomásával lehet.  
@@ -150,116 +150,116 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
 
 ## 5Sh  
 ### 1. Shell script parancsfájlok:  
-a. Parancsfájl készítés  
-    i. Szöveges fájl, x jog, chmod parancs  
-    ii. # megjegyzés  
-    iii. egy sorba több parancs is írható, a ; az elválasztó  
-    iv. echo almafa; echo alatt # ez az első program (echo –n)  
-b. Parancsfájl futtatás  
-    i. ./parancsnév  
-    ii. bash parancsnév  
-    iii. Script első sora gyakran ilyen: #!/bin/sh  
+- Parancsfájl készítés  
+    - Szöveges fájl, x jog, chmod parancs  
+    - # megjegyzés  
+    - egy sorba több parancs is írható, a ; az elválasztó  
+    - echo almafa; echo alatt # ez az első program (echo –n)  
+- Parancsfájl futtatás  
+    - ./parancsnév  
+    - bash parancsnév  
+    - Script első sora gyakran ilyen: #!/bin/sh  
         1. Jelentés: Ki értelmezze a fájlt.  
-c. .profile állomány  
-    i. Belépéskor lefut. Alapból ezen a gépen nincs.  
-    ii. Feladat: Készíts magadnak egy .profile állományt, ami üdvözöl belépéskor!  
+- .profile állomány  
+    - Belépéskor lefut. Alapból ezen a gépen nincs.  
+    - Feladat: Készíts magadnak egy .profile állományt, ami üdvözöl belépéskor!  
 
 ### 2. Változók, paraméterek, beolvasás (read):  
-a. Környezeti változók, env parancs  
-    i. PS1 változó, prompt értéke, bash-ban, \u= usernév, \h=hostnév  
+- Környezeti változók, env parancs  
+    - PS1 változó, prompt értéke, bash-ban, \u= usernév, \h=hostnév  
         1. PS2, másodlagos prompt  
-    ii. Egy változó értéke: $név  
-    iii. PATH változó  
+    - Egy változó értéke: $név  
+    - PATH változó  
         1. Feladat: Bővítsük a PATH változót a . könyvtárral! (PATH=$PATH:. ) Miért a .profile állományba írjuk a módosítást?  
-b. Összes változó, set parancs  
-    i. Saját változó definiálás: n=alma  
-    ii. Shellben látjuk, de scriptben nem. export n , ettől n környezeti változó lesz, látszik scriptben.  
-    iii. Változó megszüntetése: unset n   
-c. Script paraméterek  
-    i. $0 parancs neve, $1 első, $2, ...$9 kilencedik paraméter  
+- Összes változó, set parancs  
+    - Saját változó definiálás: n=alma  
+    - Shellben látjuk, de scriptben nem. export n , ettől n környezeti változó lesz, látszik scriptben.  
+    - Változó megszüntetése: unset n   
+- Script paraméterek  
+    - $0 parancs neve, $1 első, $2, ...$9 kilencedik paraméter  
         1. Feladat: állapítsuk meg, mi a shell program neve, amiben éppen dolgozunk, illetve milyen paraméterekkel van indítva.  
-    ii. $# paraméterek száma  
-    iii. $* összes paraméter  
-d. Feladat: Írjon shell parancsot ami kiíja a paramétereinek számát és az összes paramétert!  
-e. Feladat: Írjon shell parancsot, ami a paraméter értékénél eggyel nagyobbat ad meg! Írja ki a paraméter kétszeresét is! expr   
-f. Feladat: Írjunk shell parancsot, ami bekéri a hallgató nevét, és életkorát, majd megjeleníti azt!  
+    - $# paraméterek száma  
+    - $* összes paraméter  
+- Feladat: Írjon shell parancsot ami kiíja a paramétereinek számát és az összes paramétert!  
+- Feladat: Írjon shell parancsot, ami a paraméter értékénél eggyel nagyobbat ad meg! Írja ki a paraméter kétszeresét is! expr   
+- Feladat: Írjunk shell parancsot, ami bekéri a hallgató nevét, és életkorát, majd megjeleníti azt!  
 
 ### 3. Szűrők, csövek (pipe):  
-a. Parancs kimenet egy másik parancs bemeneteként jelenik meg: | jel  
-    i. more, head, tail, sort parancs: cat nagyfile|more 
-        i. Feladat: Írjunk parancsot, ami rendezve kiírja egy fájl első és utolsó n sorát. n legyen paraméter!  
-    ii. wc parancs, példa: cat .profile|wc   
-        i. Feladat: mondjuk meg, hány bejegyzés van a könyvtárunkban!  
-    iii. cut parancs  
-        i. Feladat: Írjunk shell programot, ami az első és utolsó paramétert kiírja, majd összeadja őket! (utolsó=`echo $*|cut –f$# -d” ”`)  
-        ii. Feladat Kérdezzük le a rendszer összes felhasználójának adatait a getent passwd parancs segítségével és tegyük bele felhasznalok.txt állományba, hány felhasználóról kapunk információt?  
-    iv. grep parancs  
-        i. Feladat: Határozzuk meg, hogy hány z betűvel kezdődő felhasználó van bejelentkezve! (who|grep ^i|wc -l)  
-        ii. Feladat: Írjuk bele a torolt_felhasznalok.txt állományba a rendszerből ideiglenesen törölt felhasználók nevét!  
+- Parancs kimenet egy másik parancs bemeneteként jelenik meg: | jel  
+    - more, head, tail, sort parancs: cat nagyfile|more 
+        - Feladat: Írjunk parancsot, ami rendezve kiírja egy fájl első és utolsó n sorát. n legyen paraméter!  
+    - wc parancs, példa: cat .profile|wc   
+        - Feladat: mondjuk meg, hány bejegyzés van a könyvtárunkban!  
+    - cut parancs  
+        - Feladat: Írjunk shell programot, ami az első és utolsó paramétert kiírja, majd összeadja őket! (utolsó=`echo $*|cut –f$# -d” ”`)  
+        - Feladat Kérdezzük le a rendszer összes felhasználójának adatait a getent passwd parancs segítségével és tegyük bele felhasznalok.txt állományba, hány felhasználóról kapunk információt?  
+    - grep parancs  
+        - Feladat: Határozzuk meg, hogy hány z betűvel kezdődő felhasználó van bejelentkezve! (who|grep ^i|wc -l)  
+        - Feladat: Írjuk bele a torolt_felhasznalok.txt állományba a rendszerből ideiglenesen törölt felhasználók nevét!  
         Segítség: az ideiglenesen törölt felhasználók a 666-os felhasználó-azonosítót kapják. (grep ':666:' < felhasznalok.txt | cut -f1 -d: > torolt_felhasznalok.txt)  
 
 ### 4. Input-Output átirányítás  
-a. > output átirányítás  
-    i. Feladat: Mit jelent: echo alma >&2 ? (Kimenet, a hibakimenetre megy.)  
-    ii. Feladat: Irányítsuk a kimenetet a ’feneketlen kukába’! (echo kukába >/dev/null )  
-b. >> hozzáfűzés  
-c. < input átirányítás  
-d. << here input  
-    i. Feladat: Mit jelent?  
+- > output átirányítás  
+    - Feladat: Mit jelent: echo alma >&2 ? (Kimenet, a hibakimenetre megy.)  
+    - Feladat: Irányítsuk a kimenetet a ’feneketlen kukába’! (echo kukába >/dev/null )  
+- >> hozzáfűzés  
+- < input átirányítás  
+- << here input  
+    - Feladat: Mit jelent?  
         cat <<alma  
         <title> Shell script 1. </title>  
         <body>  Programjaim: </body>  
         </html>  
         alma  
         (cat paramétere lesz a cat <<alma, alma közti sorok)  
-e. 2> hiba kimenet átirányítás („2>&1” a hiba kimenet és az egyszerű kimenet összefűzése, kukába a hibával: 2>/dev/null)  
+- 2> hiba kimenet átirányítás („2>&1” a hiba kimenet és az egyszerű kimenet összefűzése, kukába a hibával: 2>/dev/null)  
 
 ## 6Sh  
 ### Elágazások, ciklusok
 ### 1. Ismétlés, aritmetikai műveletek  
-a. expr utasítás, használati forma: expr kif1 op kif2, az operandus alapműveleti jel lehet: +,-,*,/, %(mod),<,>,<=,>=, = (egyenlő), !=(nemegyenlő), figyeljünk a paraméterek közti kötelező helyközre!  
-    i. Példa: a=expr 2 + 3 #hiba, mert ez egy értékadás!  
-    ii. Helyesen: a=`expr 2 + 3`; echo $a # 5  
-    iii. A *, / stb. speciális jelentéssel is bírnak, ezért ilyenkor használni kell a \ karaktert: expr 3 \* 4  
-    iv. Feladat: Egy fájlban tárolunk egy számot. Növeljük egyel az értékét! (n=`cat file`; expr $n + 1>file )  
-b. Beolvasás, read utasítás  
-    i. Feladat: Írjon masol névre hallgató programot, ami felhasználói felületet ad a cp (copy) parancshoz! (Bekérjük read-del a másolandó és a célfájl nevét.)   
-c. Minta keresés, grep.  
-    i. Feladat: Írjunk scriptet, aminek segítségével keressük meg azokat a fájlokat egy könyvtárban és az alkönyvtáraiban, amikben a paraméterül adott szó megtalálható. (grep –l –r $1 $2 $1 a szó, $2 a könyvtár)   
-    ii. Feladat: Válasszuk ki azokat a sorokat egy fájlból, amelyek a bor szót önállóan tartalmazzák! Legyen a szó paraméterként megadható! (cat file| grep –w bor )   
-d. Csere, tr parancs  
-    i. Feladat: Cseréljük ki egy szó betűit csupa nagybetűkre! (echo $szo|tr [a-z] [A-Z])  
+- expr utasítás, használati forma: expr kif1 op kif2, az operandus alapműveleti jel lehet: +,-,*,/, %(mod),<,>,<=,>=, = (egyenlő), !=(nemegyenlő), figyeljünk a paraméterek közti kötelező helyközre!  
+    - Példa: a=expr 2 + 3 #hiba, mert ez egy értékadás!  
+    - Helyesen: a=`expr 2 + 3`; echo $a # 5  
+    - A *, / stb. speciális jelentéssel is bírnak, ezért ilyenkor használni kell a \ karaktert: expr 3 \* 4  
+    - Feladat: Egy fájlban tárolunk egy számot. Növeljük egyel az értékét! (n=`cat file`; expr $n + 1>file )  
+- Beolvasás, read utasítás  
+    - Feladat: Írjon masol névre hallgató programot, ami felhasználói felületet ad a cp (copy) parancshoz! (Bekérjük read-del a másolandó és a célfájl nevét.)   
+- Minta keresés, grep.  
+    - Feladat: Írjunk scriptet, aminek segítségével keressük meg azokat a fájlokat egy könyvtárban és az alkönyvtáraiban, amikben a paraméterül adott szó megtalálható. (grep –l –r $1 $2 $1 a szó, $2 a könyvtár)   
+    - Feladat: Válasszuk ki azokat a sorokat egy fájlból, amelyek a bor szót önállóan tartalmazzák! Legyen a szó paraméterként megadható! (cat file| grep –w bor )   
+- Csere, tr parancs  
+    - Feladat: Cseréljük ki egy szó betűit csupa nagybetűkre! (echo $szo|tr [a-z] [A-Z])  
 
 ### 2. Elágazások  
-a. test utasítás, logikai értékkel tér vissza, használata: test kif1 op kif2, vagy  [ kif1 op kif2 ]  
-    i. Számok összehasonlítása (-lt, -gt, -le, -ge, -eq, -ne)  
+- test utasítás, logikai értékkel tér vissza, használata: test kif1 op kif2, vagy  [ kif1 op kif2 ]  
+    - Számok összehasonlítása (-lt, -gt, -le, -ge, -eq, -ne)  
         1. Feladat: Döntsük el, hogy egy szám nagyobb-e mint 10?  
         (test 6 –gt 10; echo $?)  
-    ii. Szövegek összehasonlítása ( =, !=)  
+    - Szövegek összehasonlítása ( =, !=)  
         1. Feladat: Egy a változóba írjunk be egy szót. Döntsük el, hogy ez a fradi volt-e?  
-    iii. Összetett kifejezés (-o, vagy, -a és)  
+    - Összetett kifejezés (-o, vagy, -a és)  
         1. Feladat: Döntsük el, hogy egy szám 0 és 5 között van-e?  
-b. if utasítás  
-    i. Feladat: Olvassunk be egy számot, írjuk ki válaszként, hogy 10-nél nagyobb, kisebb vagy egyenlő-e a beolvasott szám!  
-    ii. Feladat: Írj scriptet, ami kiírja, hogy délelőtt vagy délután vagy este van-e?  
-    iii. Feladat (opcionálisan): Módosítsd a .profile állományt ami a napszaknak megfelelően köszönt!  
-c. case elágazás  
-    i. Feladat: Írjunk futtat parancsot, ami a paraméterektől függően más és más programot futtat! Ha –d a paraméter, akkor futtassuk a date parancsot, ha –w akkor írjuk ki a bejelentkezett felhasználók nevét, ha –l akkor a könyvtár tartalmát írja ki! Ha nem egy paraméterrel, vagy rossz paraméterrel futtatjuk a programot, írjon ki mini segítséget!  
+- if utasítás  
+    - Feladat: Olvassunk be egy számot, írjuk ki válaszként, hogy 10-nél nagyobb, kisebb vagy egyenlő-e a beolvasott szám!  
+    - Feladat: Írj scriptet, ami kiírja, hogy délelőtt vagy délután vagy este van-e?  
+    - Feladat (opcionálisan): Módosítsd a .profile állományt ami a napszaknak megfelelően köszönt!  
+- case elágazás  
+    - Feladat: Írjunk futtat parancsot, ami a paraméterektől függően más és más programot futtat! Ha –d a paraméter, akkor futtassuk a date parancsot, ha –w akkor írjuk ki a bejelentkezett felhasználók nevét, ha –l akkor a könyvtár tartalmát írja ki! Ha nem egy paraméterrel, vagy rossz paraméterrel futtatjuk a programot, írjon ki mini segítséget!  
 
-### 3. Ciklusok: 
-a. for ciklus 
-    i. Feladat: Írjuk 5-ször a képernyőre: Hajrá Fradi! 
-    ii. Feladat: Írjunk programot, ami kiírja a bejelentkezett felhasználókat! (Figyeljünk a többszörös bejelentkezésre!) 
-    (for i in `who|cut –f1 –d” ”|sort -u`  
-    do 
-      echo $i bejelentkezett! 
-    done) 
-b. while ciklus 
-    i. Feladat: Oldjuk meg a for első feladatát while ciklus segítségével! 
-    ii. Feladat: Olvassunk be egymás után 5 számot és adjuk össze őket! 
-c. until ciklus 
-    i. Feladat: Oldjuk meg a for első feladatát until ciklus segítségével! 
-    ii. Feladat: Írjon menürendszerű programot until segítségével! Ha az 1 számot választjuk, akkor meghívjuk a bejelentkezett felhasználókat kiíró programunkat, ha a 2-es számot választjuk, akkor meghívjuk az 5 számot összeadó programunkat, ha a 3 számot adjuk meg, akkor kilépünk a programból! 
+### 3. Ciklusok:  
+- for ciklus  
+    - Feladat: Írjuk 5-ször a képernyőre: Hajrá Fradi!  
+    - Feladat: Írjunk programot, ami kiírja a bejelentkezett felhasználókat! (Figyeljünk a többszörös bejelentkezésre!)   
+    (for i in `who|cut –f1 –d” ”|sort -u`   
+    do  
+      echo $i bejelentkezett!  
+    done)  
+- while ciklus  
+    - Feladat: Oldjuk meg a for első feladatát while ciklus segítségével!  
+    - Feladat: Olvassunk be egymás után 5 számot és adjuk össze őket!  
+- until ciklus  
+    - Feladat: Oldjuk meg a for első feladatát until ciklus segítségével!  
+    - Feladat: Írjon menürendszerű programot until segítségével! Ha az 1 számot választjuk, akkor meghívjuk a bejelentkezett felhasználókat kiíró programunkat, ha a 2-es számot választjuk, akkor meghívjuk az 5 számot összeadó programunkat, ha a 3 számot adjuk meg, akkor kilépünk a programból!  
 ```sh
 #!/bin/sh 
 # Menu untillal 
@@ -321,7 +321,7 @@ echo Örültem, hogy engem választott!
 - Feladat: Írjunk programot, ami a paraméterben megadott fájlokat átnevezi csupa kisbetűsre! (segítség: echo $*|tr '[A-Z]' '[a-z]') 
 
 - Feladat: Bővítsük az előző programot úgy, hogy kapcsolóval megadható legyen, hogy kisbetűsíteni vagy nagybetűsíteni akarunk! 
- 
+
 - Feladat: Írjunk programot, ami egy paraméterben megadott állományban az összes elkódolt email címből valódit készít, majd azokat listázza a kimeneten. Egyúttal kerüljenek ki egy fájlba is az eredmények. (tee) Elkódolt email címek például (minden esetben gipsz@jakab.hu cím az eredeti): gipsz kukac jakab pont hu, gipsz at jakab dot hu, gipsz_nospam_jakab.hu, stb.  
 
 ## 8Sh  
