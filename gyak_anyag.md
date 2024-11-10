@@ -152,7 +152,7 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
 ### 1. Shell script parancsfájlok:  
 - Parancsfájl készítés  
     - Szöveges fájl, x jog, chmod parancs  
-    - # megjegyzés  
+    - `# megjegyzés`  
     - egy sorba több parancs is írható, a ; az elválasztó  
     - echo almafa; echo alatt # ez az első program (echo –n)  
 - Parancsfájl futtatás  
@@ -199,10 +199,11 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
         Segítség: az ideiglenesen törölt felhasználók a 666-os felhasználó-azonosítót kapják. (grep ':666:' < felhasznalok.txt | cut -f1 -d: > torolt_felhasznalok.txt)  
 
 ### 4. Input-Output átirányítás  
-- '>' output átirányítás  
+```
+- > output átirányítás  
     - Feladat: Mit jelent: echo alma >&2 ? (Kimenet, a hibakimenetre megy.)  
     - Feladat: Irányítsuk a kimenetet a ’feneketlen kukába’! (echo kukába >/dev/null )  
-- '>>' hozzáfűzés  
+- >> hozzáfűzés  
 - < input átirányítás  
 - << here input  
     - Feladat: Mit jelent?  
@@ -212,7 +213,8 @@ A szűrők később visszatérnek a scriptes részben! Elegendő arra utalni, ho
         </html>  
         alma  
         (cat paramétere lesz a `cat <<alma`, alma közti sorok)  
-- 2> hiba kimenet átirányítás („2>&1” a hiba kimenet és az egyszerű kimenet összefűzése, kukába a hibával: 2>/dev/null)  
+- 2> hiba kimenet átirányítás („2>&1” a hiba kimenet és az egyszerű kimenet összefűzése, kukába a hibával: 2>/dev/null) 
+``` 
 
 ## 6Sh  
 ### Elágazások, ciklusok
